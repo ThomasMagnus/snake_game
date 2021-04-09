@@ -28,15 +28,14 @@ def game_field():
     if snake.snake_body[0].pos()[0] >= screen.screensize()[0] - 50 or snake.snake_body[0].pos()[1] >= \
             screen.screensize()[1] + 50 or snake.snake_body[0].pos()[0] <= -(screen.screensize()[0] - 50) \
             or snake.snake_body[0].pos()[1] <= -(screen.screensize()[1] + 50):
-        score.fail()
-        return False
-    else:
-        return True
+        score.hight_score_table()
+        snake.refresh_snake()
+        snake.snake_move()
 
 
 score.write_score()
 
-while game_field() and run_game:
+while run_game:
 
     screen.update()
     time.sleep(0.1)
@@ -49,8 +48,9 @@ while game_field() and run_game:
 
     for x in range(len(snake.snake_body) - 2, 0, -1):
         if snake.snake_body[0].distance(snake.snake_body[x]) < 10:
-            score.fail()
             run_game = False
+
+    game_field()
 
 
 screen.exitonclick()

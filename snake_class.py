@@ -42,6 +42,12 @@ class Snake:
         if self.snake_body[0].heading() != down_route:
             self.snake_body[0].setheading(route)
 
+    def refresh_snake(self):
+        for x in self.snake_body:
+            x.goto(1000, 1000)
+        self.snake_body = []
+        self.turtle_setup()
+
     def up(self):
         self.move(self.UP, self.DOWN)
 
